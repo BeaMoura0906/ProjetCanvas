@@ -1,4 +1,5 @@
 import Player from "./Player.js";
+import Sortie from "./Sortie.js";
 import Obstacle from "./Obstacle.js";
 import ObjetSouris from "./ObjetSouris.js";
 import { rectsOverlap } from "./collisions.js";
@@ -33,7 +34,8 @@ export default class Game {
         this.objetsGraphiques.push(obstacle2);
 
         // On ajoute la sortie
-        // TODO
+        this.sortie = new Sortie(700, 700, 100, 100, "green");
+        this.objetsGraphiques.push(this.sortie);
 
         // On initialise les écouteurs de touches, souris, etc.
         initListeners(this.inputStates, this.canvas);
