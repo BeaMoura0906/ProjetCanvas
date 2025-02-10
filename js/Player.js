@@ -6,7 +6,7 @@ export default class Player extends ObjectGraphique {
         super(x, y, 100, 100);
         this.vitesseX = 0;
         this.vitesseY = 0;
-        this.couleur = "pink";
+        this.couleur = "purple";
         this.angle = 0;
     }
 
@@ -28,14 +28,35 @@ export default class Player extends ObjectGraphique {
         //this.ctx.scale(0.5, 0.5);
 
         // tete du monstre
-        ctx.fillStyle = "pink";
+        ctx.fillStyle = this.couleur;
         ctx.fillRect(0, 0, this.w, this.h);
+        
         // yeux
-        drawCircleImmediat(ctx, 20, 20, 10, "red");
-        drawCircleImmediat(ctx, 60, 20, 10, "red");
+        drawCircleImmediat(ctx, 30, 30, 10, "white");
+        drawCircleImmediat(ctx, 70, 30, 10, "white");
+        drawCircleImmediat(ctx, 30, 30, 5, "black");
+        drawCircleImmediat(ctx, 70, 30, 5, "black");
 
-        // Les bras
-        //this.drawBrasGauche();
+        // bouche 
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(50, 60, 20, 0, Math.PI, false);
+        ctx.stroke();
+
+        // chapeau
+        ctx.fillStyle = "green";
+        ctx.fillRect(10, -10, 80, 10);
+        ctx.fillRect(20, -30, 60, 20);
+
+        // bras
+        ctx.fillStyle = "black";
+        ctx.fillRect(-20, 30, 20, 10);
+        ctx.fillRect(100, 30, 20, 10);
+
+        // jambes
+        ctx.fillRect(20, 100, 10, 20);
+        ctx.fillRect(70, 100, 10, 20);
 
         // restore
         ctx.restore();
