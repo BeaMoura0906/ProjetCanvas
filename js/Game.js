@@ -88,8 +88,20 @@ export default class Game {
         this.objetSouris.y = this.inputStates.mouseY;
 
         // On regarde si le joueur a atteint la sortie
-        // TODO
+        if (rectsOverlap(this.player.x - this.player.w / 2, this.player.y - this.player.h / 2, this.player.w, this.player.h, this.sortie.x, this.sortie.y, this.sortie.w, this.sortie.h)) {
+            this.nextLevel();
+        }
 
+    }
+
+    nextLevel() {
+        // On réinitialise la position du joueur
+        this.player.x = 100;
+        this.player.y = 100;
+    
+        // On ajoute un obstacle
+        let newObstacle = new Obstacle(Math.random() * 700, Math.random() * 700, 50, 50, "blue");
+        this.objetsGraphiques.push(newObstacle);
     }
 
     movePlayer() {
