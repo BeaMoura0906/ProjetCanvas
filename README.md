@@ -12,6 +12,10 @@ ProjetCanvas est un jeu simple développé en JavaScript utilisant le canvas HTM
 - Utilisez les touches fléchées pour déplacer le joueur.
 - Évitez les obstacles et atteignez la sortie pour passer au niveau suivant.
 
+## Capture d'écran
+
+![Capture d'écran du jeu](assets/images/screen.png)
+
 ## Auteur
 
 Développé dans un cadre pédagogique par Beatriz Moura | BeaMoura0906
