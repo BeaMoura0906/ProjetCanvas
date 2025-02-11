@@ -1,6 +1,7 @@
 import Player from "./Player.js";
 import Sortie from "./Sortie.js";
 import Obstacle from "./Obstacle.js";
+import ObstacleAnime from "./ObstacleAnime.js";
 import ObjetSouris from "./ObjetSouris.js";
 import { rectsOverlap } from "./collisions.js";
 import { initListeners } from "./ecouteurs.js";
@@ -23,7 +24,7 @@ export default class Game {
         this.objetsGraphiques.push(this.player);
 
         // Un objert qui suite la souris, juste pour tester
-        this.objetSouris = new ObjetSouris(200, 200, 25, 25, "orange");
+        this.objetSouris = new ObjetSouris(200, 200, 5, 5, "grey");
         this.objetsGraphiques.push(this.objetSouris);
 
 
@@ -36,6 +37,10 @@ export default class Game {
         // On ajoute la sortie
         this.sortie = new Sortie(700, 700, 100, 100, "green");
         this.objetsGraphiques.push(this.sortie);
+
+        // On ajoute un obstacle animé
+        let obstacleAnime = new ObstacleAnime(200, 200, 50, 50, "orange", 2, 2);
+        this.objetsGraphiques.push(obstacleAnime);
 
         // On initialise les écouteurs de touches, souris, etc.
         initListeners(this.inputStates, this.canvas);
@@ -177,9 +182,20 @@ export default class Game {
                     // Dans ce cas on pourrait savoir comment le joueur est entré en collision avec l'obstacle et réagir en conséquence
                     // par exemple en le repoussant dans la direction opposée à celle de l'obstacle...
                     // Là par défaut on le renvoie en x=10 y=10 et on l'arrête
+                    //this.player.x = 10;
+                    //this.player.y = 10;
                     console.log("Collision avec obstacle");
-                    this.player.x = 10;
-                    this.player.y = 10;
+
+                    if (this.player.x < obj.x) {
+                        this.player.x = obj.x - this.player.w / 2;
+                    } else if (this.player.x > obj.x + obj.w) {
+                        this.player.x = obj.x + obj.w + this.player.w / 2;
+                    } else if (this.player.y < obj.y) {
+                        this.player.y = obj.y - this.player.h / 2;
+                    } else if (this.player.y > obj.y + obj.h) {
+                        this.player.y = obj.y + obj.h + this.player.h / 2;
+                    }
+
                     this.player.vitesseX = 0;
                     this.player.vitesseY = 0;
                 }
